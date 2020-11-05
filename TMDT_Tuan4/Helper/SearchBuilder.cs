@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using TMDT_Tuan4.Models;
 using TMDT_Tuan4.Helper;
-
 namespace TMDT_Tuan4.Helper
 {
     public class SearchBuilder
@@ -91,31 +90,34 @@ namespace TMDT_Tuan4.Helper
             _searchParameters.Weight = weight;
             return this;
         }
+
         public IEnumerable<laptop> Build(TMDT5Entities Entities)
         {
             var predicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
-            //search term
+            //search term 
             if (!String.IsNullOrEmpty(_searchParameters.SearchTerm))
             {
                 predicate = predicate.And(e => e.Product.Contains(_searchParameters.SearchTerm));
             }
-            //price
+            //price 
+
             if (_searchParameters.PriceLow > 0 && _searchParameters.PriceHigh > 0)
             {
                 predicate = predicate.And(e => e.Price_euros >= _searchParameters.PriceLow &&
-               e.Price_euros <= _searchParameters.PriceHigh);
+e.Price_euros <= _searchParameters.PriceHigh);
             }
-            //company
+            //company 
             if (_searchParameters.Company.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
+
                 foreach (var item in _searchParameters.Company)
                 {
                     temppredicate = temppredicate.Or(e => e.Company == item);
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //ScreenResolution
+            //ScreenResolution 
             if (_searchParameters.ScreenResolution.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -125,19 +127,17 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //TypeName
             if (_searchParameters.TypeName.Count > 0)
-                //TypeName
-                if (_searchParameters.TypeName.Count > 0)
+            {
+
+                var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
+                foreach (var item in _searchParameters.TypeName)
                 {
-                    var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
-                    foreach (var item in _searchParameters.TypeName)
-                    {
-                        temppredicate = temppredicate.Or(e => e.TypeName == item);
-                    }
-                    predicate = predicate.And(temppredicate);
+                    temppredicate = temppredicate.Or(e => e.TypeName == item);
                 }
-            //Inches
+                predicate = predicate.And(temppredicate);
+            }
+            //Inches 
             if (_searchParameters.Inches.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -147,7 +147,7 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //CPU
+            //CPU 
             if (_searchParameters.CPU.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -157,7 +157,7 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //Speed
+            //Speed 
             if (_searchParameters.Speed.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -167,7 +167,7 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //Memory
+            //Memory 
             if (_searchParameters.Memory.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -177,7 +177,7 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //Ram
+            //Ram 
             if (_searchParameters.Ram.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -187,7 +187,7 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //GPU
+            //GPU 
             if (_searchParameters.GPU.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -197,8 +197,7 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-//OS
- if (_searchParameters.OS.Count > 0)
+            if (_searchParameters.OS.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
                 foreach (var item in _searchParameters.OS)
@@ -207,7 +206,7 @@ namespace TMDT_Tuan4.Helper
                 }
                 predicate = predicate.And(temppredicate);
             }
-            //Weight
+            //Weight 
             if (_searchParameters.Weight.Count > 0)
             {
                 var temppredicate = PredicateExtensions.PredicateExtensions.Begin<laptop>();
@@ -235,4 +234,3 @@ namespace TMDT_Tuan4.Helper
         }
     }
 }
-

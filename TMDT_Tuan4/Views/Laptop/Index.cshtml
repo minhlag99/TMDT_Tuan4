@@ -2,37 +2,14 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
 @{Html.RenderAction("getCompany", "Laptop"); }
 <br />
 @{Html.RenderAction("getCPU", "Laptop"); }
-<br />
-<!--@{Html.RenderAction("getMemory", "Laptop"); }
-<br />
-@{Html.RenderAction("getScreenResolution", "Laptop"); }
-<br />
-@{Html.RenderAction("getTypeName", "Laptop"); }
-<br />
-@{Html.RenderAction("getGPU", "Laptop"); }
-<br />
-@{Html.RenderAction("getOS", "Laptop"); }
-<br />
-@{Html.RenderAction("getInches", "Laptop"); }
-<br />
-@{Html.RenderAction("getSpeed", "Laptop"); }
-<br />
-@{Html.RenderAction("getPriceLow", "Laptop"); }
-<br />
-@{Html.RenderAction("getWeight", "Laptop"); }
-<br />
-@{Html.RenderAction("getRam", "Laptop"); }-->
-
 <input type="button" name="name" onclick="find();" value="Assign" />
-<ul id="laptop"></ul>
-<ul id="cpu"></ul>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<ul id="laptop">
+</ul>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
     var uri = "../../api/LaptopAPI"
     $(document).ready(function () {
@@ -41,7 +18,6 @@
                 $('<li>', { text: formatItem(item) }).appendTo($('#laptop'));
             });
         });
-
     });
     function formatItem(item) {
         return item.Product + ':' + item.ScreenResolution;
@@ -60,144 +36,6 @@
                 }
             }
         }
-
-        var idCPU = $('#6').find('input[type=checkbox]');
-        for (var i = 0; i < idCPU.length; i++) {
-            if (idCPU[i].checked) {
-                if (idString == "") {
-                    idString = "6-" + idCPU[i].name;
-                }
-                else {
-                    idString = idString + "_6-" + idCPU[i].name;
-                }
-            }
-        }
-
-
-        var Screen = $('#8').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "8-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_8-" + Screen[i].name;
-                }
-            }
-        }
-
-        var Screen = $('#9').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "9-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_9-" + Screen[i].name;
-                }
-            }
-        }
-        var Screen = $('#14').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "14-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_14-" + Screen[i].name;
-                }
-            }
-        }
-
-
-
-        var Screen = $('#3').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "3-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_3-" + Screen[i].name;
-                }
-            }
-        }
-
-        var Screen = $('#5').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "5-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_5-" + Screen[i].name;
-                }
-            }
-        }
-
-        var Screen = $('#4').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "4-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_4-" + Screen[i].name;
-                }
-            }
-        }
-        var Screen = $('#10').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "10-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_10-" + Screen[i].name;
-                }
-            }
-        }
-
-        var Screen = $('#12').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "12-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_12-" + Screen[i].name;
-                }
-            }
-        }
-
-
-        var Screen = $('#11').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "11-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_11-" + Screen[i].name;
-                }
-            }
-        }
-
-
-        var Screen = $('#7').find('input[type=checkbox]');
-        for (var i = 0; i < Screen.length; i++) {
-            if (Screen[i].checked) {
-                if (idString == "") {
-                    idString = "7-" + Screen[i].name;
-                }
-                else {
-                    idString = idString + "_7-" + Screen[i].name;
-                }
-            }
-        }
-
-
-
         $.getJSON(uri + "/" + idString).done(function (data) {
             $.each(data, function (key, item) {
                 $('<li>', { text: formatItem(item) }).appendTo($('#laptop'));
@@ -205,9 +43,5 @@
         }).fail(function (jqXHR, textStatus, err) {
             $('#laptop').text('Error:' + err);
         });
-
     }
-
-
-
-</script> 
+</script>
