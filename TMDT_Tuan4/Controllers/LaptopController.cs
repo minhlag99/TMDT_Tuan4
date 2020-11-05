@@ -15,7 +15,6 @@ namespace TMDT_Tuan4.Controllers
             return View();
         }
 
-
         public ActionResult getCompany()
         {
             var ListCompany = db.laptops.GroupBy(l => l.Company).Select(l => l.Key);
