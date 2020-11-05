@@ -1,0 +1,16 @@
+﻿
+
+@model IEnumerable<System.Nullable<double>>
+@{
+    ViewBag.Title = "Speed";
+}
+<div id="7">
+    @foreach (var item in Model)
+    {
+        @Html.CheckBox(item.ToString());
+        <span>@item.ToString()</span>
+        <b>&ensp;</b>
+    }
+</div>
+
+
